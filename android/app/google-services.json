@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "31297385583",
+    "project_id": "quran-app-fe855",
+    "storage_bucket": "quran-app-fe855.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31297385583:android:f14dfcc70caa04a369499a",
+        "android_client_info": {
+          "package_name": "com.ziad.dev.quran_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31297385583-9n0uegnsmp3hh8a5dat3g4shrcn6fvco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS9he3BObCCswwxlRi1uEindIbIYoc1Yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31297385583-9n0uegnsmp3hh8a5dat3g4shrcn6fvco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
