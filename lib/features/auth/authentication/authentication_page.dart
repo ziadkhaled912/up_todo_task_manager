@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/core/constants/app_colors.dart';
 import 'package:quran_app/core/services/app_navigator.dart';
 import 'package:quran_app/core/widgets/app_button.dart';
 import 'package:quran_app/features/home/home_page.dart';

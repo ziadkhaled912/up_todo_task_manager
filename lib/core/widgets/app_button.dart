@@ -7,25 +7,32 @@ class AppButton extends StatelessWidget {
     required this.title,
     required this.onPressed,
     this.isPrimary = true,
+    this.hasBackground = true,
+    this.height,
   });
 
   final String title;
   final VoidCallback onPressed;
   final bool isPrimary;
+  final double? height;
+  final bool hasBackground;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: onPressed,
-      color: isPrimary ? AppColors.primaryColor : AppColors.scaffoldBackgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
-        side: !isPrimary ? const BorderSide(color: AppColors.primaryColor, width: 2) : BorderSide.none,
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+    return SizedBox(
+      height: height,
+      child: MaterialButton(
+        onPressed: onPressed,
+        color: !hasBackground ? null : isPrimary ? AppColors.primaryColor : AppColors.scaffoldBackgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+          side: !isPrimary ? const BorderSide(color: AppColors.primaryColor, width: 2) : BorderSide.none,
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+              color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }

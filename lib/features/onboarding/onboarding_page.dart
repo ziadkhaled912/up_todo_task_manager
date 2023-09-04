@@ -4,6 +4,7 @@ import 'package:quran_app/core/constants/app_colors.dart';
 import 'package:quran_app/core/services/app_navigator.dart';
 import 'package:quran_app/core/widgets/app_button.dart';
 import 'package:quran_app/features/auth/authentication/authentication_page.dart';
+import 'package:quran_app/features/auth/data/auth_repository.dart';
 import 'package:quran_app/features/onboarding/models/onbaording_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -21,6 +22,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   int _currentIndex = 0;
   bool _isLastPage = false;
+
+  final AuthRepository _authRepository = AuthRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +141,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                             curve: Curves.fastOutSlowIn,
                           );
                         } else {
+                          _authRepository.setOnBoardingView();
                           AppNavigator.navigateTo(context, const AuthenticationPage());
                         }
                       },

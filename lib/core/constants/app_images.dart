@@ -17,4 +17,8 @@ class AppSvg {
   static const String clockFill = "assets/images/clock_fill.svg";
   static const String calendarFill = "assets/images/calendar_fill.svg";
   static const String tasksEmpty = "assets/images/tasks_empty.svg";
+  static const String flag = "assets/images/flag.svg";
+  static const String send = "assets/images/send.svg";
+  static const String tag = "assets/images/tag.svg";
+  static const String timer = "assets/images/timer.svg";
 }

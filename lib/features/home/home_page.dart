@@ -4,6 +4,7 @@ import 'package:quran_app/core/constants/app_colors.dart';
 import 'package:quran_app/core/constants/app_images.dart';
 import 'package:quran_app/features/calendar/calendar_page.dart';
 import 'package:quran_app/features/focus/focus_page.dart';
+import 'package:quran_app/features/todo_request/add_todo_page/add_todo_page.dart';
 import 'package:quran_app/features/todo_list/todo_list_page.dart';
 import 'package:quran_app/features/user_profile/user_profile_page.dart';
 
@@ -65,7 +66,17 @@ class _HomePageState extends State<HomePage> {
           width: 32,
           height: 32,
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: AppColors.sheetBackgroundColor,
+            isScrollControlled: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            ),
+            builder: (context) => const AddTodoPage(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // This is all you need!

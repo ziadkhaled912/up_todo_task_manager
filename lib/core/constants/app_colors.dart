@@ -9,4 +9,7 @@ class AppColors {
   static const Color scaffoldBackgroundColor = Color(0xff121212);
   static const Color greyColor = Color(0xffAFAFAF);
   static const Color lightBackgroundColor = Color(0xff979797);
+  static const Color sheetBackgroundColor = Color(0xff363636);
+  static const Color borderColor = Color(0xff979797);
+  static const Color cardBGColor = Color(0xff272727);
 }
