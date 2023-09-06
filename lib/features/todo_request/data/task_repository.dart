@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:quran_app/core/constants/database_constants.dart';
+import 'package:quran_app/features/todo_list/models/task_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TaskRepository {
@@ -28,11 +29,48 @@ class TaskRepository {
       join(await getDatabasesPath(), '${DatabaseConstants.databaseName}.db'),
       version: 1,
       onCreate: (database, version) {
-        /// TODO: To be continued
+        database.execute(
+            "CREATE TABLE ${DatabaseConstants.taskTable}(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, description TEXT, priority INTEGER, taskTime TEXT)"
+        );
       },
+      onOpen: (database) async {
+        // print("table is deleted");
+      }
     );
     return database;
   }
 
 
+  Future<bool> insertTask(Task task) async {
+    try {
+      print("task is being added");
+      final db = await database;
+      // await databaseFactory.deleteDatabase(join(await getDatabasesPath(), '${DatabaseConstants.databaseName}.db'));
+
+      await db.insert(
+        DatabaseConstants.taskTable,
+        task.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+      print("task is added successfully");
+      return true;
+    } catch (error) {
+      print("Error while adding task ${error.toString()}");
+      return false;
+    }
+  }
+
+  Future<List<Task>> getAllTasks() async {
+    try {
+      print("getting tasks is being added");
+      final db = await database;
+      final result = await db.query(DatabaseConstants.taskTable);
+      final tasksList = result.map((item) => Task.fromMap(item)).toList();
+      print("tasks have retrieved $tasksList");
+      return tasksList;
+    } catch (error) {
+      print("Error while retrieving tasks ${error.toString()}");
+      return [];
+    }
+  }
 }

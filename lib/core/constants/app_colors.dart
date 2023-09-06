@@ -12,4 +12,5 @@ class AppColors {
   static const Color sheetBackgroundColor = Color(0xff363636);
   static const Color borderColor = Color(0xff979797);
   static const Color cardBGColor = Color(0xff272727);
+  static Color textColor = Colors.white.withOpacity(.87);
 }

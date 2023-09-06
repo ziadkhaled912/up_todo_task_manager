@@ -24,7 +24,7 @@ class _TaskPrioritySheetState extends State<TaskPrioritySheet> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Add Task",
+              "Task Priority",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -84,7 +84,9 @@ class _TaskPrioritySheetState extends State<TaskPrioritySheet> {
                     title: "Cancel",
                     height: 48,
                     hasBackground: false,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
                 const SizedBox(width: 5),

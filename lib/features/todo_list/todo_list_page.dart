@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/features/todo_list/models/todo_model.dart';
+import 'package:quran_app/features/todo_list/models/task_model.dart';
 import 'package:quran_app/features/todo_list/widgets/task_build_item.dart';
 import 'package:quran_app/features/todo_list/widgets/tasks_empty_widget.dart';
+import 'package:quran_app/features/todo_request/data/task_repository.dart';
 
 class TodoListPage extends StatefulWidget {
   const TodoListPage({super.key});
@@ -11,17 +12,28 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  final List<Task> _tasksList = [];
+  final TaskRepository _taskRepository = TaskRepository();
 
   @override
   Widget build(BuildContext context) {
-    if (_tasksList.isEmpty) {
-      return const Center(child: TasksEmptyWidget());
-    }
-    return ListView.builder(
-      itemCount: _tasksList.length,
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      itemBuilder: (context, index) => const TaskBuildItem(),
+    return FutureBuilder(
+      future: _taskRepository.getAllTasks(),
+      builder: (context, data) {
+        if(data.hasData) {
+          if (data.data!.isEmpty) {
+            return const Center(child: TasksEmptyWidget());
+          }
+          return ListView.separated(
+            itemCount: data.data!.length,
+            padding: const EdgeInsets.all( 16),
+            separatorBuilder: (_, index) => const SizedBox(height: 16),
+            itemBuilder: (context, index) => TaskBuildItem(
+              task: data.data![index],
+            ),
+          );
+        }
+        return const Center(child: CircularProgressIndicator.adaptive());
+      },
     );
   }
 }

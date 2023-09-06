@@ -4,8 +4,9 @@ import 'package:quran_app/core/constants/app_colors.dart';
 import 'package:quran_app/core/constants/app_images.dart';
 import 'package:quran_app/features/calendar/calendar_page.dart';
 import 'package:quran_app/features/focus/focus_page.dart';
-import 'package:quran_app/features/todo_request/add_todo_page/add_todo_page.dart';
+import 'package:quran_app/features/todo_request/add_task_page/add_task_page.dart';
 import 'package:quran_app/features/todo_list/todo_list_page.dart';
+import 'package:quran_app/features/todo_request/data/task_repository.dart';
 import 'package:quran_app/features/user_profile/user_profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+
+  final TaskRepository _taskRepository = TaskRepository();
 
 
   List<Widget> get _screens => const [
@@ -32,6 +35,12 @@ class _HomePageState extends State<HomePage> {
     "Focus",
     "User Profile",
   ];
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,5 +124,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _screens[_currentIndex],
     );
+  }
+
+  Future<void> _loadAllTasks() async {
+    final database = await _taskRepository.database;
+    // database.query(table)
   }
 }

@@ -5,10 +5,15 @@ import 'package:quran_app/core/constants/app_images.dart';
 import 'package:quran_app/features/todo_request/priority_sheet/priority_sheet_page.dart';
 
 class AddTodoActionsBar extends StatefulWidget {
-  const AddTodoActionsBar({super.key, required this.onDateChange, required this.onPriorityChange});
+  const AddTodoActionsBar(
+      {super.key,
+      required this.onDateChange,
+      required this.onPriorityChange,
+      required this.onSend});
 
   final Function(DateTime date) onDateChange;
   final Function(int?) onPriorityChange;
+  final VoidCallback onSend;
 
   @override
   State<AddTodoActionsBar> createState() => _AddTodoActionsBarState();
@@ -30,26 +35,27 @@ class _AddTodoActionsBarState extends State<AddTodoActionsBar> {
               firstDate: DateTime.now(),
               lastDate: DateTime.now().add(const Duration(days: 90)),
             );
-            final time = await showTimePicker(
-              context: context,
-              initialTime: TimeOfDay.now(),
-            );
-            if(date != null && time != null) {
-              _selectedDate =  DateTime(
-              date.year,
-              date.month,
-              date.day,
-              time.hour,
-              time.minute,
-            );
-              widget.onDateChange(_selectedDate!);
+            if (date != null) {
+              final time = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
+              );
+              if (time != null) {
+                _selectedDate = DateTime(
+                  date.year,
+                  date.month,
+                  date.day,
+                  time.hour,
+                  time.minute,
+                );
+                widget.onDateChange(_selectedDate!);
+              }
             }
           },
         ),
         const SizedBox(width: 10),
         IconButton(
-          onPressed: () {
-          },
+          onPressed: () {},
           icon: SvgPicture.asset(AppSvg.tag),
         ),
         const SizedBox(width: 10),
@@ -70,7 +76,7 @@ class _AddTodoActionsBarState extends State<AddTodoActionsBar> {
         ),
         const Spacer(),
         IconButton(
-          onPressed: () {},
+          onPressed: widget.onSend,
           icon: SvgPicture.asset(AppSvg.send),
         ),
       ],

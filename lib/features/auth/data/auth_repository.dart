@@ -23,7 +23,8 @@ class AuthRepository {
     try {
       if(_sharedPreferences == null) return;
       await _sharedPreferences!.setBool(CacheKeys.onBoarding, true);
-    } catch (e) {
+    } catch (error) {
+      print(error.toString());
       return;
     }
   }
